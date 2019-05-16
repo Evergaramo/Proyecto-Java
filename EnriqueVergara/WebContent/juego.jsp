@@ -3,7 +3,7 @@
 <%@ page language="java" import="com.organizacion.jsopaletras_v02.CreaSopaLetras" %>
 <%
 String msg="", msg2="";
-//CreaSopaLetras sopa = Juego.generarSopa();
+CreaSopaLetras sopa = Juego.generarSopa();
 /*char[][] tabla = sopa.getTabla();
 String[] palabras = sopa.getPalabras();
 for (int i = 0; i < tabla.length; i++) {
