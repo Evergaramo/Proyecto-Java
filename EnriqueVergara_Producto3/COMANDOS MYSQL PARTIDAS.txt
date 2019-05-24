@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS `partidas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'identificador único',
+  `usuario` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT 'id usuario',
+  `fecha` timestamp NULL DEFAULT NULL COMMENT 'fecha de la partida',
+  `puntos` int(11) NOT NULL DEFAULT '0' COMMENT 'puntuacion del juego',
+  `tiempo` time NOT NULL DEFAULT '00:00:00' COMMENT 'duracion de la partida',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`usuario`)
+        REFERENCES `usuarios`(`id`)
+        ON DELETE CASCADE
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50;

@@ -1,0 +1,31 @@
+cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+mysql --local-infile=1 -uroot -p
+mysql -u root -p --local-infile sopadeletras
+
+CREATE DATABASE sopadeletras;
+
+USE sopadeletras;
+
+CREATE TABLE IF NOT EXISTS `palabras` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'identificador único',
+  `palabra` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT 'palabra',
+  PRIMARY KEY (`id`),
+  UNIQUE (`palabra`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50;
+
+DESCRIBE palabras;
+
+https://raw.githubusercontent.com/javierarce/palabras/master/listado-general.txt
+
+SET GLOBAL local_infile='ON';
+
+SHOW GLOBAL VARIABLES LIKE 'local_infile';
+
+LOAD DATA LOCAL INFILE 'C:/Users/envem/eclipse-workspace/EnriqueVergara/listado-general.txt' INTO TABLE palabras FIELDS TERMINATED BY '\n' ENCLOSED BY '' ESCAPED BY '' LINES TERMINATED BY '\n';
+
+SELECT COUNT(*) from palabras;
+
+SELECT palabra FROM Palabras WHERE LENGTH(palabra) >= 3 AND LENGTH(palabra) <= 10 ORDER BY RAND() LIMIT 10;
+
+DELETE FROM palabras WHERE LENGTH(palabra) < 3 OR LENGTH(palabra) > 10;

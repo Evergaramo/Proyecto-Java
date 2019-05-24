@@ -1,0 +1,5 @@
+cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+mysql --local-infile=1 -uroot -p
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
