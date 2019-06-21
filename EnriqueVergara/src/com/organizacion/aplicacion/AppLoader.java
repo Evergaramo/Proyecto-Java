@@ -1,6 +1,6 @@
 package com.organizacion.aplicacion;
 
-import java.io.File;
+import java.io.InputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -8,7 +8,6 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
 
 
 public class AppLoader  implements ServletContextListener {
@@ -51,10 +50,11 @@ public class AppLoader  implements ServletContextListener {
 		
 		Logger logger = LogManager.getLogger(com.organizacion.aplicacion.AppLoader.class);
 		
-		String cfgLdap="C:\\Users\\Enrique\\eclipse-workspace\\EnriqueVergara\\WebContent\\WEB-INF\\configuracion-ldap.properties";		
-		if (! Autenticacion.isNull( cfgLdap )) {
+		String cfgLdap="/WEB-INF/configuracion-ldap.properties";	
+		
+	//	if (! Autenticacion.isNull( cfgLdap )) {
 			try {
-				if ( com.organizacion.ldap.Autenticacion.loadConfigurationFromFile( cfgLdap )) {
+				if ( com.organizacion.ldap.Autenticacion.loadConfigurationFromFile(servletContext.getResourceAsStream(cfgLdap) )) {
 					logger.info( "Se cargó correctamente la configuración para LDAP desde el fichero:"+ servletContext.getInitParameter("config_ldap") );
 				} else {
 					logger.info( "No se pudo leer la configuración para LDAP desde el fichero:"+ servletContext.getInitParameter("config_ldap") );				
@@ -62,10 +62,10 @@ public class AppLoader  implements ServletContextListener {
 			} catch(Exception x) {
 				throw new RuntimeException("No se puede iniciar la aplicación");
 			}
-		} else {
-			logger.info( "No se definió 'config_ldap' en el context.xml de la aplicación");
-			throw new RuntimeException("No se puede iniciar la aplicación");
-		}
+		//} else {
+		//	logger.info( "No se definió 'config_ldap' en el context.xml de la aplicación");
+		//	throw new RuntimeException("No se puede iniciar la aplicación");
+		//   }
 		System.err.println("Se inicia la aplicación: "+ arg.getServletContext().getServletContextName() );
 		
     }

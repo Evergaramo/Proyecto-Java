@@ -30,6 +30,9 @@ public class Autenticacion extends HttpServlet {
 	public static final String ERROR_LABEL="ErrorMsg";
 	
     /**
+     * @TODO Un string es un objeto que si no tiene ninguna asignación tendrá el valor nulo (null)
+     *  no seria necesario este método si no es por una casuística muy especial
+     *  
      * Función que nos permite saber si una cadena es nula o no
      * @param cadena String que se quiere comprobar
      * @return TRUE cuando la cadena sea null o vacía. FALSE en otro caso
@@ -79,7 +82,7 @@ public class Autenticacion extends HttpServlet {
 					try {
 						String email=ldapUser.getEmailUser();
 						
-						if (! isNull(email)) {
+						if (email!=null) {
 							// Ok, está todo bien guardamos el campo en la sesión
 							logger.info("Se encontró email='"+ email +"' para el usuario. Se apila en la sesión");
 							session.setAttribute( "email", email );

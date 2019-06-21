@@ -403,14 +403,14 @@ public class Autenticacion {
      *   desde el fichero y no se encontraron errores. FALSE en otro caso 
      * @throws IOException 
      */
-    public static boolean loadConfigurationFromFile(String pathFile) throws IOException {
+    public static boolean loadConfigurationFromFile(InputStream inputStream) throws IOException {
     	boolean retVal=false;
     	
-    	InputStream inputStream=null;
+    	//InputStream inputStream=null;
 		try {
 			Properties prop = new Properties();
  
-			inputStream = new FileInputStream(pathFile); 
+			//inputStream = new FileInputStream(pathFile); 
 			prop.load(inputStream);
 			
  
